@@ -42,6 +42,129 @@
       </Expression>
       <OverallResult success="true"/>
     </TestCase>
+    <TestCase name="#1134" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+      <Expression success="true" type="REQUIRE_FALSE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          !(values_holder::npos == a)
+        </Original>
+        <Expanded>
+          !(18446744073709551615 (0x<hex digits>)
+==
+1020334 (0x<hex digits>))
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          values_holder::npos != a
+        </Original>
+        <Expanded>
+          18446744073709551615 (0x<hex digits>)
+!=
+1020334 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE_FALSE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          !(values_holder::npos &lt; a)
+        </Original>
+        <Expanded>
+          !(18446744073709551615 (0x<hex digits>)
+&lt;
+1020334 (0x<hex digits>))
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          values_holder::npos > a
+        </Original>
+        <Expanded>
+          18446744073709551615 (0x<hex digits>)
+>
+1020334 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE_FALSE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          !(values_holder::npos &lt;= a)
+        </Original>
+        <Expanded>
+          !(18446744073709551615 (0x<hex digits>)
+&lt;=
+1020334 (0x<hex digits>))
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          values_holder::npos >= a
+        </Original>
+        <Expanded>
+          18446744073709551615 (0x<hex digits>)
+>=
+1020334 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE_FALSE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          !(a == values_holder::npos)
+        </Original>
+        <Expanded>
+          !(1020334 (0x<hex digits>)
+==
+18446744073709551615 (0x<hex digits>))
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          a != values_holder::npos
+        </Original>
+        <Expanded>
+          1020334 (0x<hex digits>)
+!=
+18446744073709551615 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          a &lt; values_holder::npos
+        </Original>
+        <Expanded>
+          1020334 (0x<hex digits>)
+&lt;
+18446744073709551615 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE_FALSE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          !(a > values_holder::npos)
+        </Original>
+        <Expanded>
+          !(1020334 (0x<hex digits>)
+>
+18446744073709551615 (0x<hex digits>))
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          a &lt;= values_holder::npos
+        </Original>
+        <Expanded>
+          1020334 (0x<hex digits>)
+&lt;=
+18446744073709551615 (0x<hex digits>)
+        </Expanded>
+      </Expression>
+      <Expression success="true" type="REQUIRE_FALSE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
+        <Original>
+          !(a >= values_holder::npos)
+        </Original>
+        <Expanded>
+          !(1020334 (0x<hex digits>)
+>=
+18446744073709551615 (0x<hex digits>))
+        </Expanded>
+      </Expression>
+      <OverallResult success="true"/>
+    </TestCase>
     <TestCase name="#1147" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
       <Expression success="true" type="REQUIRE" filename="projects/<exe-name>/UsageTests/Compilation.tests.cpp" >
         <Original>
@@ -9257,7 +9380,7 @@ loose text artifact
       </Section>
       <OverallResult success="true"/>
     </TestCase>
-    <OverallResults successes="862" failures="109" expectedFailures="21"/>
+    <OverallResults successes="874" failures="109" expectedFailures="21"/>
   </Group>
-  <OverallResults successes="862" failures="108" expectedFailures="21"/>
+  <OverallResults successes="874" failures="108" expectedFailures="21"/>
 </Catch>

@@ -7,6 +7,12 @@
 
 #include "catch.hpp"
 
+namespace Catch {
+template <>
+struct capture_by_val<std::size_t> : std::true_type{};
+}
+
+
 namespace { namespace CompilationTests {
 
 #ifndef COMPILATION_TEST_HELPERS_INCLUDED // Don't compile this more than once per TU
@@ -86,6 +92,14 @@ namespace { namespace CompilationTests {
 #pragma clang diagnostic pop
 #endif
 
+    template<typename T>
+    struct basic_values_holder {
+        using size_type = std::size_t;
+        static constexpr size_type npos = static_cast<size_type>(-1);
+    };
+
+    using values_holder = basic_values_holder<char>;
+
 #endif
 
     TEST_CASE("#809") {
@@ -132,6 +146,24 @@ namespace { namespace CompilationTests {
         REQUIRE(t1 >  t2);
         REQUIRE(t1 <= t2);
         REQUIRE(t1 >= t2);
+    }
+
+
+    TEST_CASE("#1134") {
+        const values_holder::size_type a = 1020334u;
+        REQUIRE_FALSE(values_holder::npos == a);
+        REQUIRE      (values_holder::npos != a);
+        REQUIRE_FALSE(values_holder::npos <  a);
+        REQUIRE      (values_holder::npos >  a);
+        REQUIRE_FALSE(values_holder::npos <= a);
+        REQUIRE      (values_holder::npos >= a);
+
+        REQUIRE_FALSE(a == values_holder::npos);
+        REQUIRE      (a != values_holder::npos);
+        REQUIRE      (a <  values_holder::npos);
+        REQUIRE_FALSE(a >  values_holder::npos);
+        REQUIRE      (a <= values_holder::npos);
+        REQUIRE_FALSE(a >= values_holder::npos);
     }
 
 }} // namespace CompilationTests

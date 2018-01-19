@@ -104,42 +104,70 @@ namespace Catch {
     auto compareNotEqual( long lhs, T* const& rhs ) -> bool { return reinterpret_cast<void const*>( lhs ) != rhs; }
 
 
+
+    template <typename T>
+    struct capture_by_val : std::false_type {};
+    template <>
+    struct capture_by_val<bool> : std::true_type {};
+
+
     template<typename LhsT>
     class ExprLhs {
         LhsT m_lhs;
     public:
         explicit ExprLhs( LhsT lhs ) : m_lhs( lhs ) {}
 
-        template<typename RhsT>
+        template<typename RhsT, typename = typename std::enable_if<!capture_by_val<RhsT>::value>::type>
         auto operator == ( RhsT const& rhs ) -> BinaryExpr<LhsT, RhsT const&> const {
             return { compareEqual( m_lhs, rhs ), m_lhs, "==", rhs };
         }
-        auto operator == ( bool rhs ) -> BinaryExpr<LhsT, bool> const {
-            return { m_lhs == rhs, m_lhs, "==", rhs };
+        template<typename RhsT, typename = typename std::enable_if< capture_by_val<RhsT>::value>::type>
+        auto operator == ( RhsT rhs) -> BinaryExpr<LhsT, RhsT> const {
+            return { compareEqual(m_lhs, rhs), m_lhs, "==", rhs };
         }
 
-        template<typename RhsT>
+        template<typename RhsT, typename = typename std::enable_if<!capture_by_val<RhsT>::value>::type>
         auto operator != ( RhsT const& rhs ) -> BinaryExpr<LhsT, RhsT const&> const {
             return { compareNotEqual( m_lhs, rhs ), m_lhs, "!=", rhs };
         }
-        auto operator != ( bool rhs ) -> BinaryExpr<LhsT, bool> const {
-            return { m_lhs != rhs, m_lhs, "!=", rhs };
+        template<typename RhsT, typename = typename std::enable_if< capture_by_val<RhsT>::value>::type>
+        auto operator != (RhsT rhs) -> BinaryExpr<LhsT, RhsT> const {
+            return { compareNotEqual(m_lhs, rhs), m_lhs, "!=", rhs };
         }
 
-        template<typename RhsT>
+        template<typename RhsT, typename = typename std::enable_if<!capture_by_val<RhsT>::value>::type>
         auto operator > ( RhsT const& rhs ) -> BinaryExpr<LhsT, RhsT const&> const {
             return { static_cast<bool>(m_lhs > rhs), m_lhs, ">", rhs };
         }
-        template<typename RhsT>
+        template<typename RhsT, typename = typename std::enable_if< capture_by_val<RhsT>::value>::type>
+        auto operator > (RhsT rhs) -> BinaryExpr<LhsT, RhsT> const {
+            return { static_cast<bool>(m_lhs > rhs), m_lhs, ">", rhs };
+        }
+
+        template<typename RhsT, typename = typename std::enable_if<!capture_by_val<RhsT>::value>::type>
         auto operator < ( RhsT const& rhs ) -> BinaryExpr<LhsT, RhsT const&> const {
             return { static_cast<bool>(m_lhs < rhs), m_lhs, "<", rhs };
         }
-        template<typename RhsT>
+        template<typename RhsT, typename = typename std::enable_if< capture_by_val<RhsT>::value>::type>
+        auto operator < (RhsT rhs) -> BinaryExpr<LhsT, RhsT> const {
+            return { static_cast<bool>(m_lhs < rhs), m_lhs, "<", rhs };
+        }
+
+        template<typename RhsT, typename = typename std::enable_if<!capture_by_val<RhsT>::value>::type>
         auto operator >= ( RhsT const& rhs ) -> BinaryExpr<LhsT, RhsT const&> const {
             return { static_cast<bool>(m_lhs >= rhs), m_lhs, ">=", rhs };
         }
-        template<typename RhsT>
+        template<typename RhsT, typename = typename std::enable_if< capture_by_val<RhsT>::value>::type>
+        auto operator >= (RhsT rhs) -> BinaryExpr<LhsT, RhsT> const {
+            return { static_cast<bool>(m_lhs >= rhs), m_lhs, ">=", rhs };
+        }
+
+        template<typename RhsT, typename = typename std::enable_if<!capture_by_val<RhsT>::value>::type>
         auto operator <= ( RhsT const& rhs ) -> BinaryExpr<LhsT, RhsT const&> const {
+            return { static_cast<bool>(m_lhs <= rhs), m_lhs, "<=", rhs };
+        }
+        template<typename RhsT, typename = typename std::enable_if< capture_by_val<RhsT>::value>::type>
+        auto operator <= (RhsT rhs) -> BinaryExpr<LhsT, RhsT> const {
             return { static_cast<bool>(m_lhs <= rhs), m_lhs, "<=", rhs };
         }
 
@@ -156,13 +184,14 @@ namespace Catch {
     }
 
     struct Decomposer {
-        template<typename T>
+        template<typename T, typename = typename std::enable_if<!capture_by_val<T>::value>::type>
         auto operator <= ( T const& lhs ) -> ExprLhs<T const&> {
             return ExprLhs<T const&>{ lhs };
         }
 
-        auto operator <=( bool value ) -> ExprLhs<bool> {
-            return ExprLhs<bool>{ value };
+        template<typename T, typename = typename std::enable_if< capture_by_val<T>::value>::type>
+        auto operator <=( T value ) -> ExprLhs<T> {
+            return ExprLhs<T>{ value };
         }
     };
 

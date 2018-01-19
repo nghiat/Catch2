@@ -52,6 +52,108 @@ with expansion:
   0 == 0
 
 -------------------------------------------------------------------------------
+#1134
+-------------------------------------------------------------------------------
+Compilation.tests.cpp:<line number>
+...............................................................................
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE_FALSE( values_holder::npos == a )
+with expansion:
+  !(18446744073709551615 (0x<hex digits>)
+  ==
+  1020334 (0x<hex digits>))
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE( values_holder::npos != a )
+with expansion:
+  18446744073709551615 (0x<hex digits>)
+  !=
+  1020334 (0x<hex digits>)
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE_FALSE( values_holder::npos < a )
+with expansion:
+  !(18446744073709551615 (0x<hex digits>)
+  <
+  1020334 (0x<hex digits>))
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE( values_holder::npos > a )
+with expansion:
+  18446744073709551615 (0x<hex digits>)
+  >
+  1020334 (0x<hex digits>)
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE_FALSE( values_holder::npos <= a )
+with expansion:
+  !(18446744073709551615 (0x<hex digits>)
+  <=
+  1020334 (0x<hex digits>))
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE( values_holder::npos >= a )
+with expansion:
+  18446744073709551615 (0x<hex digits>)
+  >=
+  1020334 (0x<hex digits>)
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE_FALSE( a == values_holder::npos )
+with expansion:
+  !(1020334 (0x<hex digits>)
+  ==
+  18446744073709551615 (0x<hex digits>))
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE( a != values_holder::npos )
+with expansion:
+  1020334 (0x<hex digits>)
+  !=
+  18446744073709551615 (0x<hex digits>)
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE( a < values_holder::npos )
+with expansion:
+  1020334 (0x<hex digits>)
+  <
+  18446744073709551615 (0x<hex digits>)
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE_FALSE( a > values_holder::npos )
+with expansion:
+  !(1020334 (0x<hex digits>)
+  >
+  18446744073709551615 (0x<hex digits>))
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE( a <= values_holder::npos )
+with expansion:
+  1020334 (0x<hex digits>)
+  <=
+  18446744073709551615 (0x<hex digits>)
+
+Compilation.tests.cpp:<line number>:
+PASSED:
+  REQUIRE_FALSE( a >= values_holder::npos )
+with expansion:
+  !(1020334 (0x<hex digits>)
+  >=
+  18446744073709551615 (0x<hex digits>))
+
+-------------------------------------------------------------------------------
 #1147
 -------------------------------------------------------------------------------
 Compilation.tests.cpp:<line number>
@@ -299,6 +401,6 @@ with expansion:
   !true
 
 ===============================================================================
-test cases: 11 |  8 passed | 1 failed | 2 failed as expected
-assertions: 34 | 27 passed | 4 failed | 3 failed as expected
+test cases: 12 |  9 passed | 1 failed | 2 failed as expected
+assertions: 46 | 39 passed | 4 failed | 3 failed as expected
 

@@ -3,6 +3,42 @@ Decomposition.tests.cpp:<line number>: passed: fptr == 0 for: 0 == 0
 Decomposition.tests.cpp:<line number>: passed: fptr == 0l for: 0 == 0
 Compilation.tests.cpp:<line number>: passed: y.v == 0 for: 0 == 0
 Compilation.tests.cpp:<line number>: passed: 0 == y.v for: 0 == 0
+Compilation.tests.cpp:<line number>: passed: !(values_holder::npos == a) for: !(18446744073709551615 (0x<hex digits>)
+==
+1020334 (0x<hex digits>))
+Compilation.tests.cpp:<line number>: passed: values_holder::npos != a for: 18446744073709551615 (0x<hex digits>)
+!=
+1020334 (0x<hex digits>)
+Compilation.tests.cpp:<line number>: passed: !(values_holder::npos < a) for: !(18446744073709551615 (0x<hex digits>)
+<
+1020334 (0x<hex digits>))
+Compilation.tests.cpp:<line number>: passed: values_holder::npos > a for: 18446744073709551615 (0x<hex digits>)
+>
+1020334 (0x<hex digits>)
+Compilation.tests.cpp:<line number>: passed: !(values_holder::npos <= a) for: !(18446744073709551615 (0x<hex digits>)
+<=
+1020334 (0x<hex digits>))
+Compilation.tests.cpp:<line number>: passed: values_holder::npos >= a for: 18446744073709551615 (0x<hex digits>)
+>=
+1020334 (0x<hex digits>)
+Compilation.tests.cpp:<line number>: passed: !(a == values_holder::npos) for: !(1020334 (0x<hex digits>)
+==
+18446744073709551615 (0x<hex digits>))
+Compilation.tests.cpp:<line number>: passed: a != values_holder::npos for: 1020334 (0x<hex digits>)
+!=
+18446744073709551615 (0x<hex digits>)
+Compilation.tests.cpp:<line number>: passed: a < values_holder::npos for: 1020334 (0x<hex digits>)
+<
+18446744073709551615 (0x<hex digits>)
+Compilation.tests.cpp:<line number>: passed: !(a > values_holder::npos) for: !(1020334 (0x<hex digits>)
+>
+18446744073709551615 (0x<hex digits>))
+Compilation.tests.cpp:<line number>: passed: a <= values_holder::npos for: 1020334 (0x<hex digits>)
+<=
+18446744073709551615 (0x<hex digits>)
+Compilation.tests.cpp:<line number>: passed: !(a >= values_holder::npos) for: !(1020334 (0x<hex digits>)
+>=
+18446744073709551615 (0x<hex digits>))
 Compilation.tests.cpp:<line number>: passed: t1 == t2 for: {?} == {?}
 Compilation.tests.cpp:<line number>: passed: t1 != t2 for: {?} != {?}
 Compilation.tests.cpp:<line number>: passed: t1 < t2 for: {?} < {?}
