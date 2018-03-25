@@ -1,5 +1,4 @@
 #include "catch.hpp"
-
 #include "internal/catch_xmlwriter.h"
 
 #include <sstream>
@@ -10,7 +9,7 @@ inline std::string encode( std::string const& str, Catch::XmlEncode::ForWhat for
     return oss.str();
 }
 
-TEST_CASE( "XmlEncode" ) {
+TEST_CASE( "XmlEncode", "[XML]" ) {
     SECTION( "normal string" ) {
         REQUIRE( encode( "normal string" ) == "normal string" );
     }
@@ -37,5 +36,21 @@ TEST_CASE( "XmlEncode" ) {
     }
     SECTION( "string with control char (x7F)" ) {
         REQUIRE( encode( "[\x7F]" ) == "[\\x7F]" );
+    }
+}
+
+TEST_CASE("XmlEncode: UTF-8", "[xml][utf-8]") {
+    std::vector<char> bytes;
+    SECTION("Valid utf-8 strings") {
+        CHECK(encode(u8"Here be 👾") == u8"Here be 👾");
+        CHECK(encode(u8"šš") == u8"šš");
+    }
+    SECTION("Invalid utf-8 strings") {
+        CHECK(encode(u8"Here \xFF be 👾") == u8"Here \\xFF be 👾");
+        CHECK(encode("\xFF") == "\\xFF");
+        CHECK(encode("\xF4\x90\x80\x80") == u8"\\xF4\\x90\\x80\\x80");
+
+        bytes = { '\xC5', '\xC5', '\xA0', '\0' };
+        CHECK(encode(bytes.data()) == u8"\\xC5Š");
     }
 }
