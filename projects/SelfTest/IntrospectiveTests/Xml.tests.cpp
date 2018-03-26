@@ -54,61 +54,59 @@ TEST_CASE("XmlEncode: UTF-8", "[xml][utf-8]") {
         CHECK(encode(u8"\xF4\x8F\xBF\xBF") == u8"\xF4\x8F\xBF\xBF"); // 0x10FFFF
     }
     SECTION("Invalid utf-8 strings") {
-
         SECTION("Various broken strings") {
-            CHECK(encode(u8"Here \xFF be 👾") == u8"Here \\xFF be 👾");
-            CHECK(encode(u8"\xFF") == "\\xFF");
-            CHECK(encode(u8"\xF4\x90\x80\x80") == u8"\\xF4\\x90\\x80\\x80");
-            CHECK(encode(u8"\xC5\xC5\xA0") == u8"\\xC5Š");
-            CHECK(encode(u8"\xF4\x90\x80\x80") == u8"\\xF4\\x90\\x80\\x80"); // 0x110000 -- out of unicode range
+            CHECK(encode("Here \xFF be 👾") == u8"Here \\xFF be 👾");
+            CHECK(encode("\xFF") == "\\xFF");
+            CHECK(encode("\xC5\xC5\xA0") == u8"\\xC5Š");
+            CHECK(encode("\xF4\x90\x80\x80") == u8"\\xF4\\x90\\x80\\x80"); // 0x110000 -- out of unicode range
         }
 
         SECTION("Overlong encodings") {
-            CHECK(encode(u8"\xC0\x80") == u8"\\xC0\\x80"); // \0
-            CHECK(encode(u8"\xF0\x80\x80\x80") == u8"\\xF0\\x80\\x80\\x80"); // Super-over-long \0
-            CHECK(encode(u8"\xC1\xBF") == u8"\\xC1\\xBF"); // ASCII char as UTF-8 (0x7F)
-            CHECK(encode(u8"\xE0\x9F\xBF") == u8"\\xE0\\x9F\\xBF"); // 0x7FF
-            CHECK(encode(u8"\xF0\x8F\xBF\xBF") == u8"\\xF0\\x8F\\xBF\\xBF"); // 0xFFFF
+            CHECK(encode("\xC0\x80") == u8"\\xC0\\x80"); // \0
+            CHECK(encode("\xF0\x80\x80\x80") == u8"\\xF0\\x80\\x80\\x80"); // Super-over-long \0
+            CHECK(encode("\xC1\xBF") == u8"\\xC1\\xBF"); // ASCII char as UTF-8 (0x7F)
+            CHECK(encode("\xE0\x9F\xBF") == u8"\\xE0\\x9F\\xBF"); // 0x7FF
+            CHECK(encode("\xF0\x8F\xBF\xBF") == u8"\\xF0\\x8F\\xBF\\xBF"); // 0xFFFF
         }
 
         // Note that we actually don't modify surrogate pairs, as we do not do strict checking
         SECTION("Surrogate pairs") {
-            CHECK(encode(u8"\xED\xA0\x80") == u8"\xED\xA0\x80"); // Invalid surrogate half 0xD800
-            CHECK(encode(u8"\xED\xAF\xBF") == u8"\xED\xAF\xBF"); // Invalid surrogate half 0xDBFF
-            CHECK(encode(u8"\xED\xB0\x80") == u8"\xED\xB0\x80"); // Invalid surrogate half 0xDC00
-            CHECK(encode(u8"\xED\xBF\xBF") == u8"\xED\xBF\xBF"); // Invalid surrogate half 0xDFFF        }
+            CHECK(encode("\xED\xA0\x80") == "\xED\xA0\x80"); // Invalid surrogate half 0xD800
+            CHECK(encode("\xED\xAF\xBF") == "\xED\xAF\xBF"); // Invalid surrogate half 0xDBFF
+            CHECK(encode("\xED\xB0\x80") == "\xED\xB0\x80"); // Invalid surrogate half 0xDC00
+            CHECK(encode("\xED\xBF\xBF") == "\xED\xBF\xBF"); // Invalid surrogate half 0xDFFF
         }
 
         SECTION("Invalid start byte") {
-            CHECK(encode(u8"\x80") == u8"\\x80");
-            CHECK(encode(u8"\x81") == u8"\\x81");
-            CHECK(encode(u8"\xBC") == u8"\\xBC");
-            CHECK(encode(u8"\xBF") == u8"\\xBF");
+            CHECK(encode("\x80") == u8"\\x80");
+            CHECK(encode("\x81") == u8"\\x81");
+            CHECK(encode("\xBC") == u8"\\xBC");
+            CHECK(encode("\xBF") == u8"\\xBF");
             // Out of range
-            CHECK(encode(u8"\xF5\x80\x80\x80") == u8"\\xF5\\x80\\x80\\x80");
-            CHECK(encode(u8"\xF6\x80\x80\x80") == u8"\\xF6\\x80\\x80\\x80");
-            CHECK(encode(u8"\xF7\x80\x80\x80") == u8"\\xF7\\x80\\x80\\x80");
+            CHECK(encode("\xF5\x80\x80\x80") == u8"\\xF5\\x80\\x80\\x80");
+            CHECK(encode("\xF6\x80\x80\x80") == u8"\\xF6\\x80\\x80\\x80");
+            CHECK(encode("\xF7\x80\x80\x80") == u8"\\xF7\\x80\\x80\\x80");
         }
 
         SECTION("Missing continuation byte(s)") {
             // Missing first continuation byte
-            CHECK(encode(u8"\xDE") == u8"\\xDE");
-            CHECK(encode(u8"\xDF") == u8"\\xDF");
-            CHECK(encode(u8"\xE0") == u8"\\xE0");
-            CHECK(encode(u8"\xEF") == u8"\\xEF");
-            CHECK(encode(u8"\xF0") == u8"\\xF0");
-            CHECK(encode(u8"\xF4") == u8"\\xF4");
+            CHECK(encode("\xDE") == u8"\\xDE");
+            CHECK(encode("\xDF") == u8"\\xDF");
+            CHECK(encode("\xE0") == u8"\\xE0");
+            CHECK(encode("\xEF") == u8"\\xEF");
+            CHECK(encode("\xF0") == u8"\\xF0");
+            CHECK(encode("\xF4") == u8"\\xF4");
 
             // Missing second continuation byte
-            CHECK(encode(u8"\xE0\x80") == u8"\\xE0\\x80");
-            CHECK(encode(u8"\xE0\xBF") == u8"\\xE0\\xBF");
-            CHECK(encode(u8"\xE1\x80") == u8"\\xE1\\x80");
-            CHECK(encode(u8"\xF0\x80") == u8"\\xF0\\x80");
-            CHECK(encode(u8"\xF4\x80") == u8"\\xF4\\x80");
+            CHECK(encode("\xE0\x80") == u8"\\xE0\\x80");
+            CHECK(encode("\xE0\xBF") == u8"\\xE0\\xBF");
+            CHECK(encode("\xE1\x80") == u8"\\xE1\\x80");
+            CHECK(encode("\xF0\x80") == u8"\\xF0\\x80");
+            CHECK(encode("\xF4\x80") == u8"\\xF4\\x80");
 
             // Missing third continuation byte
-            CHECK(encode(u8"\xF0\x80\x80") == u8"\\xF0\\x80\\x80");
-            CHECK(encode(u8"\xF4\x80\x80") == u8"\\xF4\\x80\\x80");
+            CHECK(encode("\xF0\x80\x80") == u8"\\xF0\\x80\\x80");
+            CHECK(encode("\xF4\x80\x80") == u8"\\xF4\\x80\\x80");
         }
     }
 }
