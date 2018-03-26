@@ -102,7 +102,9 @@ namespace {
                 // Important: We do not check the exact decoded values for validity, only the encoding format
                 // First check that this bytes is a valid lead byte:
                 // This means that it is not encoded as 1111 1XXX
-                if (c >= 0xF8) {
+                // Or as 10XX XXXX
+                if (c <  0xC0 ||
+                    c >= 0xF8) {
                     hexEscapeChar(os, c);
                     break;
                 }
