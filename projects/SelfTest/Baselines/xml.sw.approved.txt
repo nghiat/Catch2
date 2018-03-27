@@ -8014,7 +8014,7 @@ Message from section two
         </Expression>
         <Expression success="true" type="CHECK" filename="projects/<exe-name>/IntrospectiveTests/Xml.tests.cpp" >
           <Original>
-            encode(u8"\xDF\xBF") == u8"\xDF\xBF"
+            encode("\xDF\xBF") == "\xDF\xBF"
           </Original>
           <Expanded>
             "߿" == "߿"
@@ -8022,7 +8022,7 @@ Message from section two
         </Expression>
         <Expression success="true" type="CHECK" filename="projects/<exe-name>/IntrospectiveTests/Xml.tests.cpp" >
           <Original>
-            encode(u8"\xE0\xA0\x80") == u8"\xE0\xA0\x80"
+            encode("\xE0\xA0\x80") == "\xE0\xA0\x80"
           </Original>
           <Expanded>
             "ࠀ" == "ࠀ"
@@ -8030,7 +8030,7 @@ Message from section two
         </Expression>
         <Expression success="true" type="CHECK" filename="projects/<exe-name>/IntrospectiveTests/Xml.tests.cpp" >
           <Original>
-            encode(u8"\xED\x9F\xBF") == u8"\xED\x9F\xBF"
+            encode("\xED\x9F\xBF") == "\xED\x9F\xBF"
           </Original>
           <Expanded>
             "퟿" == "퟿"
@@ -8038,7 +8038,7 @@ Message from section two
         </Expression>
         <Expression success="true" type="CHECK" filename="projects/<exe-name>/IntrospectiveTests/Xml.tests.cpp" >
           <Original>
-            encode(u8"\xEE\x80\x80") == u8"\xEE\x80\x80"
+            encode("\xEE\x80\x80") == "\xEE\x80\x80"
           </Original>
           <Expanded>
             "" == ""
@@ -8046,7 +8046,7 @@ Message from section two
         </Expression>
         <Expression success="true" type="CHECK" filename="projects/<exe-name>/IntrospectiveTests/Xml.tests.cpp" >
           <Original>
-            encode(u8"\xEF\xBF\xBF") == u8"\xEF\xBF\xBF"
+            encode("\xEF\xBF\xBF") == "\xEF\xBF\xBF"
           </Original>
           <Expanded>
             "￿" == "￿"
@@ -8054,7 +8054,7 @@ Message from section two
         </Expression>
         <Expression success="true" type="CHECK" filename="projects/<exe-name>/IntrospectiveTests/Xml.tests.cpp" >
           <Original>
-            encode(u8"\xF0\x90\x80\x80") == u8"\xF0\x90\x80\x80"
+            encode("\xF0\x90\x80\x80") == "\xF0\x90\x80\x80"
           </Original>
           <Expanded>
             "𐀀" == "𐀀"
@@ -8062,7 +8062,7 @@ Message from section two
         </Expression>
         <Expression success="true" type="CHECK" filename="projects/<exe-name>/IntrospectiveTests/Xml.tests.cpp" >
           <Original>
-            encode(u8"\xF4\x8F\xBF\xBF") == u8"\xF4\x8F\xBF\xBF"
+            encode("\xF4\x8F\xBF\xBF") == "\xF4\x8F\xBF\xBF"
           </Original>
           <Expanded>
             "􏿿" == "􏿿"

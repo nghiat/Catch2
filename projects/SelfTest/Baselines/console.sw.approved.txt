@@ -7133,43 +7133,43 @@ with expansion:
 
 Xml.tests.cpp:<line number>:
 PASSED:
-  CHECK( encode(u8"\xDF\xBF") == u8"\xDF\xBF" )
+  CHECK( encode("\xDF\xBF") == "\xDF\xBF" )
 with expansion:
   "߿" == "߿"
 
 Xml.tests.cpp:<line number>:
 PASSED:
-  CHECK( encode(u8"\xE0\xA0\x80") == u8"\xE0\xA0\x80" )
+  CHECK( encode("\xE0\xA0\x80") == "\xE0\xA0\x80" )
 with expansion:
   "ࠀ" == "ࠀ"
 
 Xml.tests.cpp:<line number>:
 PASSED:
-  CHECK( encode(u8"\xED\x9F\xBF") == u8"\xED\x9F\xBF" )
+  CHECK( encode("\xED\x9F\xBF") == "\xED\x9F\xBF" )
 with expansion:
   "퟿" == "퟿"
 
 Xml.tests.cpp:<line number>:
 PASSED:
-  CHECK( encode(u8"\xEE\x80\x80") == u8"\xEE\x80\x80" )
+  CHECK( encode("\xEE\x80\x80") == "\xEE\x80\x80" )
 with expansion:
   "" == ""
 
 Xml.tests.cpp:<line number>:
 PASSED:
-  CHECK( encode(u8"\xEF\xBF\xBF") == u8"\xEF\xBF\xBF" )
+  CHECK( encode("\xEF\xBF\xBF") == "\xEF\xBF\xBF" )
 with expansion:
   "￿" == "￿"
 
 Xml.tests.cpp:<line number>:
 PASSED:
-  CHECK( encode(u8"\xF0\x90\x80\x80") == u8"\xF0\x90\x80\x80" )
+  CHECK( encode("\xF0\x90\x80\x80") == "\xF0\x90\x80\x80" )
 with expansion:
   "𐀀" == "𐀀"
 
 Xml.tests.cpp:<line number>:
 PASSED:
-  CHECK( encode(u8"\xF4\x8F\xBF\xBF") == u8"\xF4\x8F\xBF\xBF" )
+  CHECK( encode("\xF4\x8F\xBF\xBF") == "\xF4\x8F\xBF\xBF" )
 with expansion:
   "􏿿" == "􏿿"
 

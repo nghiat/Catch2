@@ -45,13 +45,13 @@ TEST_CASE("XmlEncode: UTF-8", "[xml][utf-8]") {
         CHECK(encode(u8"Here be 👾") == u8"Here be 👾");
         CHECK(encode(u8"šš") == u8"šš");
 
-        CHECK(encode(u8"\xDF\xBF")         == u8"\xDF\xBF"); // 0x7FF
-        CHECK(encode(u8"\xE0\xA0\x80")     == u8"\xE0\xA0\x80"); // 0x800
-        CHECK(encode(u8"\xED\x9F\xBF")     == u8"\xED\x9F\xBF"); // 0xD7FF
-        CHECK(encode(u8"\xEE\x80\x80")     == u8"\xEE\x80\x80"); // 0xE000
-        CHECK(encode(u8"\xEF\xBF\xBF")     == u8"\xEF\xBF\xBF"); // 0xFFFF
-        CHECK(encode(u8"\xF0\x90\x80\x80") == u8"\xF0\x90\x80\x80"); // 0x10000
-        CHECK(encode(u8"\xF4\x8F\xBF\xBF") == u8"\xF4\x8F\xBF\xBF"); // 0x10FFFF
+        CHECK(encode("\xDF\xBF")         == "\xDF\xBF"); // 0x7FF
+        CHECK(encode("\xE0\xA0\x80")     == "\xE0\xA0\x80"); // 0x800
+        CHECK(encode("\xED\x9F\xBF")     == "\xED\x9F\xBF"); // 0xD7FF
+        CHECK(encode("\xEE\x80\x80")     == "\xEE\x80\x80"); // 0xE000
+        CHECK(encode("\xEF\xBF\xBF")     == "\xEF\xBF\xBF"); // 0xFFFF
+        CHECK(encode("\xF0\x90\x80\x80") == "\xF0\x90\x80\x80"); // 0x10000
+        CHECK(encode("\xF4\x8F\xBF\xBF") == "\xF4\x8F\xBF\xBF"); // 0x10FFFF
     }
     SECTION("Invalid utf-8 strings") {
         SECTION("Various broken strings") {
